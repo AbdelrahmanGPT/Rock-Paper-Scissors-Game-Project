@@ -1,5 +1,6 @@
 #include<iostream>
 #include<cstdlib>
+#include"ABODAstd.h"
 
 using namespace std;
 
@@ -11,39 +12,6 @@ struct GameResult
 	short ComputerWonTimes = 0;
 	short DrawTimes = 0;
 };
-
-short RandomNumber(short From, short To)
-{
-	short RandomNumber = rand() % (To - From + 1) + From;
-
-	return RandomNumber;
-}
-
-short ValidateNumberInRange(short From, short To , string Message)
-{
-	short Number;
-	do
-	{
-		cout << Message << "\n";
-		cin >> Number;
-
-	} while (Number < From || Number > To);
-
-	return Number;
-}
-
-int ReadPositiveNumber(string Message)
-{
-	int Number;
-	do {
-
-		cout << Message << "\n";
-		cin >> Number;
-
-	} while (Number <= 0);
-
-	return Number;
-}
 
 int ReadNumberOfRounds()
 {
@@ -124,17 +92,6 @@ void PrintRoundResult(int RoundNumber, Choice PlayerChoice, Choice ComputerChoic
 			"ROUND WINNER    : " << Winner << "\n\n";
 }
 
-string Tab(short Number)
-{
-	string Tab = "";
-	while (Number--)
-	{
-		Tab += "\t";
-	}
-
-	return Tab;
-}
-
 string FinalWinner(GameResult GameResult)
 {
 	if (GameResult.PlayerWonTimes > GameResult.ComputerWonTimes)
@@ -165,29 +122,6 @@ void PrintGameResult(int NumberOfRounds,GameResult GameResult)
 	cout << Tab(2) << "DRAW TIMES         : " << GameResult.DrawTimes << "\n";
 	cout << Tab(2) << "FINAL WINNER       : " << FinalWinner(GameResult) << "\n\n";
 	cout << Tab(2) << "___________________________________________________________\n\n";
-}
-
-bool DoYouWantToPlayAgain()
-{
-	string Choice;
-	do
-	{
-		cout << "DO YOU WANT TO PLAY AGAIN[Y/N]\n";
-		cin >> Choice;
-	} while (Choice != "Y" && Choice != "y" && Choice != "N" && Choice != "n");
-
-	if (Choice == "Y" || Choice == "y")
-	{
-		system("cls");
-		system("color 0F");
-		return 1;
-	}
-
-	else
-	{
-		cout << "GOOD BYE :)\n";
-		return 0;
-	}
 }
 
 void StartGame()
